@@ -4,6 +4,8 @@
   "description": "NodeJS, ExpressJS, Handlebars and Cookie-Session based auth app",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
