@@ -1,4 +1,5 @@
-const btnLogin = document.getElementById('login');
+const approach = 'FORM';    // FORM | AJAX
+const form = document.querySelector('form');
 const btnCloseAlert = document.querySelector('.btn-close');
 
 (function () {
@@ -9,10 +10,11 @@ const btnCloseAlert = document.querySelector('.btn-close');
     }
 })();
 
-btnLogin.addEventListener('click', async function () {
+form.addEventListener('submit', async function (e) {
+    if (approach === 'FORM')
+        return;
 
-    // remove the below return if you wanna test the AJAX way
-    return;
+    e.preventDefault();
 
     try {
         const txtUsername = document.getElementById('username');
@@ -29,7 +31,7 @@ btnLogin.addEventListener('click', async function () {
             headers: { 'content-type': 'application/json' },
             body
         });
-    
+
         if (response.status === 200) {
             window.location.replace('/');
         } else {

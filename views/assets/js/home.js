@@ -1,9 +1,11 @@
-const btnLogout = document.getElementById('logout');
+const approach = 'FORM';    // FORM | AJAX
+const form = document.querySelector('form');
 
-btnLogout.addEventListener('click', async function () {
+form.addEventListener('submit', async function (e) {
+    if (approach === 'FORM')
+        return;
 
-    // remove the below return if you wanna test the AJAX way
-    return;
+    e.preventDefault();
 
     try {
         const response = await fetch('/api/logout', {
