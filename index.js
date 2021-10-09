@@ -1,8 +1,8 @@
 const express = require('express')
 const hbs = require('express-handlebars')
+const cookieSession = require('cookie-session')
 
 const app = express();
-const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 3000;
 
@@ -74,7 +74,8 @@ app.post('/actions/login', (req, res) => {
     const rememberMe = req.body && req.body.rememberMe;
 
     if (username === 'admin' && password === 'admin') {
-        req.sessionOptions.maxAge = rememberMe ? 14 * 24 * 3600000 : req.sessionOptions.maxAge;
+        const maxAge = 14 * 24 * 3600000;     // number_of_days * hours_a_day * one_hour(in milliseconds)
+        req.sessionOptions.maxAge = rememberMe ? maxAge : req.sessionOptions.maxAge;
         req.session.isLoggedIn = true;
         req.session.username = username;
         req.session.maxAge = req.sessionOptions.maxAge;
@@ -98,7 +99,8 @@ app.post('/api/login', (req, res) => {
     const rememberMe = req.body && req.body.rememberMe;
 
     if (username === 'admin' && password === 'admin') {
-        req.sessionOptions.maxAge = rememberMe ? 14 * 24 * 3600000 : req.sessionOptions.maxAge;
+        const maxAge = 14 * 24 * 3600000;     // number_of_days * hours_a_day * one_hour(in milliseconds)
+        req.sessionOptions.maxAge = rememberMe ? maxAge : req.sessionOptions.maxAge;
         req.session.isLoggedIn = true;
         req.session.username = username;
         req.session.maxAge = req.sessionOptions.maxAge;
